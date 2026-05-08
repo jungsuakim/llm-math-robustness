@@ -99,27 +99,6 @@ python src/eval_baselines.py --models base sft grpo
 # Per-type consistency analysis (which types should/shouldn't be consistent)
 python src/analyze_consistency.py
 
-# Summary table: all models x all perturbation types
-python3 - << 'EOF'
-import pandas as pd
-from pathlib import Path
-RESULTS_DIR = Path("results")
-rows = []
-for csv_path in sorted(RESULTS_DIR.glob("*_results.csv")):
-    model = csv_path.stem.replace("_results", "")
-    df = pd.read_csv(csv_path)
-    for p_type, g in df.groupby("perturbation_type"):
-        orig = g["original_correct"].mean()
-        pert = g["perturbed_correct"].mean()
-        rows.append({"model": model, "type": p_type,
-                     "orig": round(orig,3), "pert": round(pert,3),
-                     "gap": round(orig-pert,3)})
-df = pd.DataFrame(rows)
-pivot = df.pivot(index="model", columns="type", values="gap")
-pivot["OVERALL"] = pivot.mean(axis=1).round(3)
-print(pivot.sort_values("OVERALL").to_string())
-EOF
-
 # Qualitative failure analysis
 python src/qualitative_eval.py --from_csv results/base_results.csv
 python src/qualitative_eval.py --from_csv results/cons_lr5e-6_l23_full_results.csv
