@@ -1,0 +1,4 @@
+Model,Orig Acc,Pert Acc,Gap,Consistency
+sft_orig_lr1e-6_full,0.594,0.54,0.054,0.217
+sft_both_lr1e-6_full,0.603,0.546,0.057,0.214
+cons_lr1e-6_l8_full,0.589,0.549,0.04,0.217
