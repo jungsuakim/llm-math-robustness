@@ -45,10 +45,8 @@ llm-robustness/
 │   ├── qualitative_eval.py      # Qualitative failure mode analysis
 │   └── summary_table.py         # Print all model x type accuracy tables
 ├── results/                     # Saved evaluation CSVs
-├── models/                      # Trained model checkpoints
-├── logs/                        # Training logs
 └── report/
-    └── report.tex               # Final paper
+    └── report.pdf               # Final paper
 ```
 
 ## Setup
